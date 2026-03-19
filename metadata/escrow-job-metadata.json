@@ -1,0 +1,46 @@
+{
+  "title": "Full-Stack dApp Development for DeFi Dashboard",
+  "description": "Build a responsive DeFi dashboard that displays real-time portfolio balances, yield farming positions, and transaction history across multiple EVM chains.",
+  "version": "1.0",
+  "buyer": {
+    "address": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "name": "Dev Studio XYZ"
+  },
+  "seller": {
+    "address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+    "name": "Vishesh Gupta"
+  },
+  "arbitrator": {
+    "address": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+    "name": "TrustedArbitrator DAO"
+  },
+  "deliverables": [
+    "Smart contract integration with Uniswap V3 and Aave V3",
+    "Frontend built with Next.js and wagmi/viem",
+    "Multi-chain support: Ethereum, Polygon, Arbitrum",
+    "Wallet connect via WalletConnect and MetaMask",
+    "Unit and integration tests with >80% coverage"
+  ],
+  "payment": {
+    "amount": "1.0",
+    "currency": "ETH",
+    "amountWei": "1000000000000000000"
+  },
+  "timeline": {
+    "createdAt": "2026-03-18T00:00:00Z",
+    "deliveryTimeout": 1209600,
+    "responseTimeout": 604800,
+    "deliveryDeadline": "2026-04-01T00:00:00Z",
+    "responseDeadline": "2026-04-08T00:00:00Z"
+  },
+  "terms": {
+    "revisions": 2,
+    "disputeResolutionProcess": "Arbitrator reviews deliverables against spec. Full refund if no work delivered, full payout if all deliverables met, proportional split otherwise.",
+    "confidentiality": "All source code and documentation remain confidential until escrow is resolved."
+  },
+  "metadata": {
+    "schema": "escrow-job-v1",
+    "chainId": 1,
+    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+  }
+}
