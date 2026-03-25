@@ -68,7 +68,7 @@ async function main() {
 
   const startId = Number(await escrow.nextEscrowId());
   console.log(`Next escrow ID: ${startId}\n`);
-
+ 
   // ─── Happy path (create → deliver → release) ───
   console.log(`=== Escrow #${startId}: Happy path ===`);
 
