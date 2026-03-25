@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: '20' }
+        with: { node-version: "20" }
       - run: npm ci
       - run: npx hardhat compile
       - run: npx hardhat test
@@ -19,28 +19,48 @@ jobs:
   size-check:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: npm ci
+      - run: npx hardhat compile
       - run: npx hardhat size-contracts
-        # Fails if any contract exceeds 24KB EIP-170 limit    
+        # Fails if any contract exceeds 24KB EIP-170 limit
   slither:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
+
       - run: pip install slither-analyzer
+
       - uses: actions/setup-node@v4
-        with: { node-version: '20' }
+        with: { node-version: "20" }
+
       - run: npm ci
       - run: npx hardhat compile
+
       - name: Run Slither
         run: |
           slither . \
             --hardhat-artifacts-directory artifacts \
             --exclude naming-convention \
             --sarif results.sarif \
-            --json slither-report.json
-        continue-on-error: true
+            --json slither-report.json || true
+
+      - name: Upload SARIF (only if exists)
+        if: always()
+        run: |
+          if [ -f results.sarif ]; then
+            echo "Uploading SARIF"
+          else
+            echo "No SARIF file generated"
+          fi
+
       - uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('results.sarif') != ''
         with:
           sarif_file: results.sarif
